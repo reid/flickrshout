@@ -12,10 +12,12 @@
 
 h1, h2, h3 {
     margin: 0;
+    padding: 0;
 }
 
 h1 {
     font-size: 36px;
+    letter-spacing: -2px;
 }
 
 .error, .time-input, .block {
@@ -37,7 +39,7 @@ h1 {
     font-size: 85%;
     background: #dff;
     padding: 3px;
-    height: 15px;
+    height: 20px;
 }
 
 #shout-button {
@@ -55,6 +57,10 @@ h1 {
 .detail {
     font-size: 80%;
     color: #aaa;
+}
+
+.update {
+    border: 1px solid #ccc;
 }
 
 form {

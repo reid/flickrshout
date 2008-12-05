@@ -30,7 +30,7 @@ var IRFlickrShout = {
             document.getElementById('view-id-data').innerHTML = 'Your Flickr ID is ' + id + '.';
             document.getElementById('user_id').innerHTML = id;
             if (previous != id) {
-                IRFlickrShout.sbox.start();
+                IRFlickrShout.shout.start();
                 IRFlickrShout.userId.toggle(true);
             }
         },
@@ -55,7 +55,7 @@ var IRFlickrShout = {
             return false;
         }
     },
-    sbox: {
+    shout: {
         photos: [],
         uploaded: 0,
         start: function() {
@@ -69,7 +69,7 @@ var IRFlickrShout = {
             var params = {};
             params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.FEED;
             params[gadgets.io.RequestParameters.AUTHORIZATION] = gadgets.io.AuthorizationType.NONE;
-            gadgets.io.makeRequest(url, IRFlickrShout.sbox.ready, params);
+            gadgets.io.makeRequest(url, IRFlickrShout.shout.ready, params);
         },
         ready: function(obj) {
             console.log(obj);
@@ -90,25 +90,27 @@ var IRFlickrShout = {
                 var obj = {};
                 obj[opensocial.Activity.Field.TITLE] = IRFlickrShout.userId.displayName + ' posted <a href="' + item.link + '">' + item.title + '</a> to Flickr.';
                 console.log(item.title);
-                IRFlickrShout.sbox.photos.push(obj);
+                IRFlickrShout.shout.photos.push(obj);
+                html += '<div class="update">';
                 html += obj[opensocial.Activity.Field.TITLE] + '<br>';
                 html += item.content;
+                html += '</div>';
             }
             document.getElementById('recent-photos').innerHTML = html;
         },
         submit: function() {
-            IRFlickrShout.sbox.uploaded = 0;
-            var p = IRFlickrShout.sbox.photos;
+            IRFlickrShout.shout.uploaded = 0;
+            var p = IRFlickrShout.shout.photos;
             for (var i = 0; i < p.length; i++) {
                 var a = opensocial.newActivity(p[i]);
-                opensocial.requestCreateActivity(a, opensocial.CreateActivityPriority.HIGH, IRFlickrShout.sbox.callback);
+                opensocial.requestCreateActivity(a, opensocial.CreateActivityPriority.HIGH, IRFlickrShout.shout.callback);
             }
             return false;
         },
         callback: function(req) {
             console.log(req);
-            IRFlickrShout.sbox.uploaded++;
-            document.getElementById('shout-status').innerHTML = IRFlickrShout.sbox.uploaded + '/' + IRFlickrShout.sbox.photos.length + ' posted!';
+            IRFlickrShout.shout.uploaded++;
+            document.getElementById('shout-status').innerHTML = IRFlickrShout.shout.uploaded + '/' + IRFlickrShout.shout.photos.length + ' posted!';
         }
     },
     error: {

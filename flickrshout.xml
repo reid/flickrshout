@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="http://apps.idearefuge.com/gadgets/flickrshout/current/main.css">
 <div id="ir-app">
 <div id="hd">
-<h1>FlickrShout</h1>
+<h1>FlickrShout!</h1>
 </div>
 
 <div id="bd">
@@ -33,9 +33,9 @@ FlickrShout isn't quite ready to use yet.
 
 <div class="block">
 <h2>Your Recent Photos</h2>
-<div class="right"><a href="" onclick="IRFlickrShout.sbox.ready(); return false;">Refresh Photos</a></div>
+<div class="right"><a href="" onclick="IRFlickrShout.shout.ready(); return false;">Refresh Photos</a></div>
 <div id="recent-photos">Loading...</div>
-<form id="shout" onsubmit="return IRFlickrShout.sbox.submit();">
+<form id="shout" onsubmit="return IRFlickrShout.shout.submit();">
 <p>Want to Share?</p>
 <div id="shout-status"></div>
 <input type="submit" id="shout-button" value="Shout These Photos">
