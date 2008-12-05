@@ -4,20 +4,53 @@ var IRFlickrShout = {
         IRFlickrShout.sbox.start();
     },
     userId: {
+        value: '',
         start: function() {
-            //getappdata
+            IRFlickrShout.userId.update();
+        },
+        update: function() {
+            var req = opensocial.newDataRequest();
+            req.add(req.newFetchPersonAppDataRequest(opensocial.IdSpec.PersonId.VIEWER, 'flickr_user'), 'flickr_user');
+            req.send(IRFlickrShout.userId.callback);
+        },
+        callback: function(req) {
+            var data = req.get('flickr_user').getData();
+            if (IRFlickrShout.userId.value != data.nsid) {
+                IRFlickrShout.sbox.start();
+            }
+            var id = IRFlickrShout.userId.value = data.nsid;
+            document.getElementById('view-id').innerHTML = 'Your Flickr ID is ' + id + ' <a href="" onclick="IRFlickrShout.userId.toggle">Edit</a>';
+            IRFlickrShout.userId.toggle();
+        },
+        toggle: function() {
+            var f = document.getElementById('entry-form');
+            var v = document.getElementById('view-id');
+            if (f.style.display == 'none') {
+                f.style.display = 'block';
+                v.style.display = 'none';
+            } else {
+                f.style.display = 'none';
+                v.style.display = 'block';
+            }
         },
         submit: function() {
             console.log('got submit for user');
+            var user_id = document.getElementById('user_id').value;
+            var req = opensocial.newDataRequest();
+            req.add(req.newUpdatePersonAppDataRequest(opensocial.IdSpec.PersonId.VIEWER, 'flickr_user', {nsid: user_id}));
+            req.send(IRFlickrShout.userId.update); 
+            return false;
         }
     },
     sbox: {
         start: function() {
-            //var url = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=corruptlogic&api_key=b25b959554ed76058ac220b7b2e0a026";
-            var url = "http://apps.idearefuge.com/gadgets/as/evil.html";
-            var url = "http://api.flickr.com/services/feeds/photos_public.gne?id=42995562@N00&lang=en-us";
+            if (IRFlickrShout.userId.value) {
+                var id = IRFlickrShout.userId.value;
+            } else {
+                var id = '42995562@N00';
+            }
+            var url = "http://api.flickr.com/services/feeds/photos_public.gne?id=" + id + "&lang=en-us";
             var params = {};
-            //params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
             params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.FEED;
             params[gadgets.io.RequestParameters.AUTHORIZATION] = gadgets.io.AuthorizationType.NONE;
             gadgets.io.makeRequest(url, IRFlickrShout.sbox.ready, params);
@@ -46,32 +79,6 @@ var IRFlickrShout = {
                 warning.style.display = 'none';
             } else {
                 warning.style.display = 'block';
-            }
-        }
-    },
-    tracks: {
-        submit: function() {
-            IRFlickrShout.error.notImplemented();
-            console.log('got submit');
-            var hour = document.getElementById('hour').value;
-            var minute = document.getElementById('minute').value;
-            var ampm = document.getElementById('ampm').innerHTML;
-            var tracks = hour + ':' + minute + ' ' + ampm;
-            var lunch = new Date();
-            if (ampm == 'PM') {
-                hour += 12;
-            }
-            lunch.setHours(hour);
-            lunch.setMinutes(minute);
-            lunch.setSeconds(0);
-            console.log(tracks + ' ' + lunch.toString());
-        },
-        toggleAmPm: function() {
-            var ampm = document.getElementById('ampm');
-            if (ampm.innerHTML == 'PM') {
-                ampm.innerHTML = 'AM';
-            } else {
-                ampm.innerHTML = 'PM';
             }
         }
     }
