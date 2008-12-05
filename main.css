@@ -10,9 +10,9 @@
     font-style: italic;
 }
 
-h1, h2, h3, .time-input p {
+h1, h2, h3 {
     margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
+    /*font-family: Georgia, "Times New Roman", serif;*/
 }
 
 h1 {
@@ -34,35 +34,19 @@ h1 {
     color: #222;
 }
 
-.time-input {
-    text-align: center;
-    font-size: 30px;
-    color: #fff;
-    background-color: #222;
-    border: 3px solid #000;
+#flickr-info {
+    font-size: 85%;
+    background: #dff;
+    padding: 3px;
+}
+
+.detail {
+    font-size: 80%;
+    color: #aaa;
 }
 
 form {
     margin: 0;
-}
-
-.time-input p {
-    margin-bottom: 10px;
-}
-
-.time-input * {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.time-input input {
-    font-size: 36px;
-    width: 55px;
-}
-
-.button {
-    font-size: 18px !important;
-    width: 150px !important;
 }
 
 #ft {

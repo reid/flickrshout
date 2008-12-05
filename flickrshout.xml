@@ -22,7 +22,7 @@ FlickrShout isn't quite ready to use yet.
 <div>If you continue to see this message, try logging in.</div>
 </div>
 
-<div id="block-id">
+<div id="flickr-info">
 <div id="view-id"><span id="view-id-data">Loading your Flickr information...</span> <a href="" onclick="return IRFlickrShout.userId.toggle();">Edit</a></div>
 <form id="entry-form" onsubmit="return IRFlickrShout.userId.submit();" style="display: none;">
 <label for="user_id">Enter your Flickr ID (use <a href="http://idgettr.com/">idGettr</a> to find it)</label>
