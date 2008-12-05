@@ -33,6 +33,7 @@ FlickrShout isn't quite ready to use yet.
 
 <div class="block">
 <h2>Your Recent Photos</h2>
+<div class="right"><a href="" onclick="IRFlickrShout.sbox.ready(); return false;">Refresh Photos</a></div>
 <div id="recent-photos">Loading...</div>
 <form id="shout" onsubmit="return IRFlickrShout.sbox.submit();">
 <p>Want to Share?</p>

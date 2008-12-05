@@ -27,6 +27,7 @@ var IRFlickrShout = {
             var previous = IRFlickrShout.userId.value;
             var id = IRFlickrShout.userId.value = data.nsid;
             document.getElementById('view-id-data').innerHTML = 'Your Flickr ID is ' + id + '.';
+            document.getElementById('user_id').innerHTML = id;
             if (previous != id) {
                 IRFlickrShout.sbox.start();
                 IRFlickrShout.userId.toggle(true);
@@ -45,7 +46,6 @@ var IRFlickrShout = {
             return false;
         },
         submit: function() {
-            console.log('got submit for user');
             var user_id = document.getElementById('user_id').value;
             var req = opensocial.newDataRequest();
             req.add(req.newUpdatePersonAppDataRequest(opensocial.IdSpec.PersonId.VIEWER, 'flickr_user', {nsid: user_id}));
@@ -60,7 +60,7 @@ var IRFlickrShout = {
             if (IRFlickrShout.userId.value) {
                 var id = IRFlickrShout.userId.value;
             } else {
-                var id = '42995562@N00';
+                IRFlickrShout.error.update('Please specify your Flickr ID :)');
             }
             var url = "http://api.flickr.com/services/feeds/photos_public.gne?id=" + id + "&lang=en-us";
             var params = {};
@@ -71,6 +71,9 @@ var IRFlickrShout = {
         ready: function(obj) {
             console.log(obj);
             var items = obj.data.items;
+            if (!items) {
+                return IRFlickrShout.error.update('Invalid Flickr ID, why not try another?');
+            }
             var html = '';
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
