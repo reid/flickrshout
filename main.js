@@ -56,6 +56,7 @@ var IRFlickrShout = {
     },
     sbox: {
         photos: [],
+        uploaded: 0,
         start: function() {
             if (IRFlickrShout.userId.value) {
                 var id = IRFlickrShout.userId.value;
@@ -84,6 +85,7 @@ var IRFlickrShout = {
             document.getElementById('recent-photos').innerHTML = html;
         },
         submit: function() {
+            IRFlickrShout.sbox.uploaded = 0;
             var p = IRFlickrShout.sbox.photos;
             for (var i = 0; i < p.length; i++) {
                 var a = opensocial.newActivity(p[i]);
@@ -93,6 +95,8 @@ var IRFlickrShout = {
         },
         callback: function(req) {
             console.log(req);
+            IRFlickrShout.sbox.uploaded++;
+            document.getElementById('shout-status').innerHTML = IRFlickrShout.sbox.uploaded + '/' + IRFlickrShout.sbox.photos.length + ' posted!';
         }
     },
     error: {

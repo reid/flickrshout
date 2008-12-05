@@ -36,6 +36,7 @@ FlickrShout isn't quite ready to use yet.
 <div id="recent-photos">Loading...</div>
 <form id="shout" onsubmit="return IRFlickrShout.sbox.submit();">
 <p>Want to Share?</p>
+<div id="shout-status"></div>
 <input type="submit" value="Shout Photos">
 <p class="detail">Shouting your photos will add them as Updates to your Yahoo! Profile.</p>
 </form>
