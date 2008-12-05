@@ -89,6 +89,7 @@ var IRFlickrShout = {
                 var a = opensocial.newActivity(p[i]);
                 opensocial.requestCreateActivity(a, opensocial.CreateActivityPriority.HIGH, IRFlickrShout.sbox.callback);
             }
+            return false;
         },
         callback: function(req) {
             console.log(req);
