@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Module>
-<ModulePrefs title="Last.fm" author="Reid Burke">
+<ModulePrefs title="FlickrShout" author="Reid Burke">
 <Require feature="opensocial-0.8" />
 </ModulePrefs>
 <Content type="html">
 <![CDATA[
-<script src="http://apps.idearefuge.com/gadgets/as/main.js"></script>
+<script src="http://apps.idearefuge.com/gadgets/flickrshout/current/main.js"></script>
 <script>
-    gadgets.util.registerOnLoadHandler(IRLastFm.start);
+    gadgets.util.registerOnLoadHandler(IRFlickrShout.start);
 </script>
-<link rel="stylesheet" type="text/css" href="http://apps.idearefuge.com/gadgets/as/main.css">
+<link rel="stylesheet" type="text/css" href="http://apps.idearefuge.com/gadgets/flickrshout/current/main.css">
 <div id="ir-app">
 <div id="hd">
-<h1>Last.fm</h1>
+<h1>FlickrShout</h1>
 </div>
 
 <div id="bd">
 
 <div id="error-bd" class="error">
-Last.fm isn't quite ready to use yet.
+FlickrShout isn't quite ready to use yet.
 <div>If you continue to see this message, try logging in.</div>
 </div>
 
 <!--
 <div class="tracks-input">
 <p>What tracks can you go to lunch?</p>
-<form onsubmit="IRLastFm.tracks.submit(); return false;">
+<form onsubmit="IRFlickrShout.tracks.submit(); return false;">
 <input type="text" size="1" maxlength="2" id="hour"> :
 <input type="text" size="1" maxlength="2" id="minute">
-<span id="ampm" onclick="IRLastFm.tracks.toggleAmPm(); return false;">PM</span>
+<span id="ampm" onclick="IRFlickrShout.tracks.toggleAmPm(); return false;">PM</span>
 <div>
-<input class="button" type="button" onclick="IRLastFm.tracks.submit(); return false;" value="Post">
+<input class="button" type="button" onclick="IRFlickrShout.tracks.submit(); return false;" value="Post">
 </div>
 </form>
 </div>
@@ -44,7 +44,7 @@ Last.fm isn't quite ready to use yet.
 
 <div id="ft">
 <div class="right">
-<img src="http://apps.idearefuge.com/gadgets/as/as.gif" alt="Powered by Audioscrobbler">
+<img src="http://apps.idearefuge.com/gadgets/flickrshout/current/flickrshout/current.gif" alt="Powered by Audioscrobbler">
 </div>
 An IdeaRefuge Joint &mdash; &copy; 2008 
 </div>

@@ -1,7 +1,7 @@
-var IRLastFm = {
+var IRFlickrShout = {
     start: function() {
-        IRLastFm.error.clear();
-        IRLastFm.sbox.start();
+        IRFlickrShout.error.clear();
+        IRFlickrShout.sbox.start();
     },
     sbox: {
         start: function() {
@@ -11,7 +11,7 @@ var IRLastFm = {
             //params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
             params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;
             params[gadgets.io.RequestParameters.AUTHORIZATION] = gadgets.io.AuthorizationType.NONE;
-            gadgets.io.makeRequest(url, IRLastFm.sbox.ready, params);
+            gadgets.io.makeRequest(url, IRFlickrShout.sbox.ready, params);
         },
         ready: function(obj) {
             console.log(obj);
@@ -20,10 +20,10 @@ var IRLastFm = {
     },
     error: {
         notImplemented: function() {
-            IRLastFm.error.update('This isn\'t implemented yet!');
+            IRFlickrShout.error.update('This isn\'t implemented yet!');
         },
         clear: function() {
-            IRLastFm.error.update('');
+            IRFlickrShout.error.update('');
         },
         update: function(str) {
             var warning = document.getElementById('error-bd');
@@ -37,7 +37,7 @@ var IRLastFm = {
     },
     tracks: {
         submit: function() {
-            IRLastFm.error.notImplemented();
+            IRFlickrShout.error.notImplemented();
             console.log('got submit');
             var hour = document.getElementById('hour').value;
             var minute = document.getElementById('minute').value;
