@@ -16,6 +16,7 @@ var IRFlickrShout = {
         },
         callback: function(req) {
             var data = req.get('flickr_user').getData();
+console.log(data);
             if (typeof data.nsid == "undefined") {
                 return IRFlickrShout.userId.toggle();
             }
@@ -35,6 +36,7 @@ var IRFlickrShout = {
                 f.style.display = 'none';
                 v.style.display = 'block';
             }
+            return false;
         },
         submit: function() {
             console.log('got submit for user');
