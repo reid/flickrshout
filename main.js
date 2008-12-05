@@ -29,7 +29,7 @@ var IRFlickrShout = {
             var id = IRFlickrShout.userId.value = data.nsid;
             document.getElementById('view-id-data').innerHTML = 'Your Flickr ID is ' + id + '.';
             document.getElementById('user_id').innerHTML = id;
-            if (previous != id) {
+            if (previous != id && id != '') {
                 IRFlickrShout.shout.start();
                 IRFlickrShout.userId.toggle(true);
             }

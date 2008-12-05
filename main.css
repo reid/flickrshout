@@ -1,5 +1,7 @@
 #ir-app {
     font-family: Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1.231;
 }
 
 #hd {
@@ -61,6 +63,9 @@ h1 {
 
 .update {
     border: 1px solid #ccc;
+    float: left;
+    padding: 5px;
+    margin: 5px;
 }
 
 form {
