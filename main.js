@@ -17,8 +17,11 @@ var IRFlickrShout = {
         },
         callback: function(req) {
             var user = req.get('user').getData();
+            var guid = user.getField(opensocial.Person.Field.ID);
             var data = req.get('flickr_user').getData();
 console.log(user);
+console.log(data);
+            data = data[guid];
 console.log(data);
             if (typeof data.nsid == "undefined") {
                 return IRFlickrShout.userId.toggle();
