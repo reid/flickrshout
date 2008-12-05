@@ -28,13 +28,13 @@ var IRFlickrShout = {
             document.getElementById('view-id-data').innerHTML = 'Your Flickr ID is ' + id + '.';
             if (previous != id) {
                 IRFlickrShout.sbox.start();
-                IRFlickrShout.userId.toggle();
+                IRFlickrShout.userId.toggle(true);
             }
         },
-        toggle: function() {
+        toggle: function(a) {
             var f = document.getElementById('entry-form');
             var v = document.getElementById('view-id');
-            if (f.style.display == 'none') {
+            if (f.style.display == 'none' && !a) {
                 f.style.display = 'block';
                 v.style.display = 'none';
             } else {
