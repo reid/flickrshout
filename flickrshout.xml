@@ -23,7 +23,7 @@ FlickrShout isn't quite ready to use yet.
 </div>
 
 <div id="block-id">
-<div id="view-id"><span id="view-id-data">Loading your Flickr information...</div> <a href="" onclick="return IRFlickrShout.userId.toggle();">Edit</a></div>
+<div id="view-id"><span id="view-id-data">Loading your Flickr information...</span> <a href="" onclick="return IRFlickrShout.userId.toggle();">Edit</a></div>
 <form id="entry-form" onsubmit="return IRFlickrShout.userId.submit();" style="display: none;">
 <label for="user_id">Enter your Flickr ID (use <a href="http://idgettr.com/">idGettr</a> to find it)</label>
 <input type="text" name="user_id" id="user_id">
@@ -34,7 +34,7 @@ FlickrShout isn't quite ready to use yet.
 <div class="block">
 <h3>Your Recent Photos</h3>
 <div id="recent-photos">Loading...</div>
-<form id="shout" id="return IRFlickrShout.shout.submit();">
+<form id="shout" onsubmit="return IRFlickrShout.shout.submit();">
 <p>Want to Share?</p>
 <input type="submit" value="Shout Photos">
 <p class="detail">Shouting your photos will add them as Updates to your Yahoo! Profile.</p>

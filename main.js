@@ -19,15 +19,13 @@ var IRFlickrShout = {
             var user = req.get('user').getData();
             var guid = user.getField(opensocial.Person.Field.ID);
             var data = req.get('flickr_user').getData();
-console.log(user);
-console.log(data);
             data = data[guid]['flickr_user'];
-console.log(data);
             if (typeof data.nsid == "undefined") {
                 return IRFlickrShout.userId.toggle();
             }
             if (IRFlickrShout.userId.value != data.nsid) {
                 IRFlickrShout.sbox.start();
+                IRFlickrShout.userId.toggle();
             }
             var id = IRFlickrShout.userId.value = data.nsid;
             document.getElementById('view-id-data').innerHTML = 'Your Flickr ID is ' + id + '.';
