@@ -17,6 +17,14 @@ h1, h2, h3 {
     padding: 0;
 }
 
+a {
+    color: #4396cc;
+}
+
+a img {
+    border: 0;
+}
+
 h1 {
     font-size: 36px;
     letter-spacing: -2px;
@@ -49,8 +57,9 @@ h1 {
 }
 
 #shout {
+    clear: both;
     padding: 5px;
-    background: #ffc;
+    background: #ffe;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
