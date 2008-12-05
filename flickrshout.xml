@@ -32,12 +32,12 @@ FlickrShout isn't quite ready to use yet.
 </div>
 
 <div class="block">
-<h3>Your Recent Photos</h3>
+<h2>Your Recent Photos</h2>
 <div id="recent-photos">Loading...</div>
 <form id="shout" onsubmit="return IRFlickrShout.sbox.submit();">
 <p>Want to Share?</p>
 <div id="shout-status"></div>
-<input type="submit" value="Shout Photos">
+<input type="submit" id="shout-button" value="Shout These Photos">
 <p class="detail">Shouting your photos will add them as Updates to your Yahoo! Profile.</p>
 </form>
 </div>

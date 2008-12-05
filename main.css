@@ -3,7 +3,7 @@
 }
 
 #hd {
-    text-align: center;
+    padding: 5px;
     color: #fff;
     background-color: #39c;
     border-bottom: 1px solid #36c;
@@ -38,6 +38,18 @@ h1 {
     font-size: 85%;
     background: #dff;
     padding: 3px;
+}
+
+#shout-button {
+    font-size: 24px;
+}
+
+#shout {
+    padding: 5px;
+    background: #ffc;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .detail {
