@@ -3,6 +3,14 @@ var IRFlickrShout = {
         IRFlickrShout.error.clear();
         IRFlickrShout.sbox.start();
     },
+    userId: {
+        start: function() {
+            //getappdata
+        },
+        submit: function() {
+            console.log('got submit for user');
+        }
+    },
     sbox: {
         start: function() {
             //var url = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=corruptlogic&api_key=b25b959554ed76058ac220b7b2e0a026";
@@ -21,7 +29,7 @@ var IRFlickrShout = {
                 var item = items[i];
                 console.log(item.title);
             }
-            document.getElementById('friends-tracks').innerHTML = obj.text;
+            document.getElementById('recent-photos').innerHTML = obj.text;
         }
     },
     error: {

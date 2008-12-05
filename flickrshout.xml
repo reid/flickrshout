@@ -22,29 +22,30 @@ FlickrShout isn't quite ready to use yet.
 <div>If you continue to see this message, try logging in.</div>
 </div>
 
-<!--
-<div class="tracks-input">
-<p>What tracks can you go to lunch?</p>
-<form onsubmit="IRFlickrShout.tracks.submit(); return false;">
-<input type="text" size="1" maxlength="2" id="hour"> :
-<input type="text" size="1" maxlength="2" id="minute">
-<span id="ampm" onclick="IRFlickrShout.tracks.toggleAmPm(); return false;">PM</span>
-<div>
-<input class="button" type="button" onclick="IRFlickrShout.tracks.submit(); return false;" value="Post">
-</div>
+<div id="block-id">
+<div id="view-id"></div>
+<form id="entry-form" onsubmit="IRFlickrShout.userId.submit">
+<label for="id">Enter your Flickr ID (use <a href="http://idgettr.com/">idGettr</a> to find it)</label>
+<input type="text" name="id" id="id">
+<input type="submit" value="Save">
 </form>
 </div>
--->
+
 <div class="block">
-<h3>Your Friends</h3>
-<div id="friends-tracks">Loading...</div>
+<h3>Your Recent Photos</h3>
+<div id="recent-photos">Loading...</div>
+<form id="shout">
+<p>Want to Share?</p>
+<input type="submit" value="Shout Photos">
+<p class="detail">Shouting your photos will add them as Updates to your Yahoo! Profile.</p>
+</form>
 </div>
 
 </div>
 
 <div id="ft">
 <div class="right">
-<img src="http://apps.idearefuge.com/gadgets/flickrshout/current/flickrshout/current.gif" alt="Powered by Audioscrobbler">
+We Love Flickr!
 </div>
 An IdeaRefuge Joint &mdash; &copy; 2008 
 </div>
