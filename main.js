@@ -22,6 +22,7 @@ var IRFlickrShout = {
             var data = req.get('flickr_user').getData();
             data = data[guid]['flickr_user'];
             if (typeof data.nsid == "undefined" || data.nsid == '') {
+                IRFlickrShout.error.update('To get started, give us a Flickr ID!');
                 return IRFlickrShout.userId.toggle();
             }
             var previous = IRFlickrShout.userId.value;
@@ -72,11 +73,16 @@ var IRFlickrShout = {
         },
         ready: function(obj) {
             console.log(obj);
+            var html = '';
+            if (!obj.data) {
+                return IRFlickrShout.error.update('Invalid Flickr ID, why not try another?');
+                html = 'Nothing to show.';
+            }
             var items = obj.data.items;
             if (!items) {
-                return IRFlickrShout.error.update('Invalid Flickr ID, why not try another?');
+                return IRFlickrShout.error.update('Didn\'t find any photos :(');
+                html = 'No photos! Refresh to update.';
             }
-            var html = '';
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
                 var obj = {};
