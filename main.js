@@ -11,11 +11,14 @@ var IRFlickrShout = {
         },
         update: function() {
             var req = opensocial.newDataRequest();
+            req.add(req.newFetchPersonRequest(opensocial.IdSpec.PersonId.VIEWER), 'user');
             req.add(req.newFetchPersonAppDataRequest(opensocial.IdSpec.PersonId.VIEWER, 'flickr_user'), 'flickr_user');
             req.send(IRFlickrShout.userId.callback);
         },
         callback: function(req) {
+            var user = req.get('user').getData();
             var data = req.get('flickr_user').getData();
+console.log(user);
 console.log(data);
             if (typeof data.nsid == "undefined") {
                 return IRFlickrShout.userId.toggle();
