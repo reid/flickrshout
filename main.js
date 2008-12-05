@@ -7,9 +7,10 @@ var IRFlickrShout = {
         start: function() {
             //var url = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=corruptlogic&api_key=b25b959554ed76058ac220b7b2e0a026";
             var url = "http://apps.idearefuge.com/gadgets/as/evil.html";
+            var url = "http://api.flickr.com/services/feeds/photos_public.gne?id=42995562@N00&lang=en-us";
             var params = {};
             //params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
-            params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.TEXT;
+            params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.FEED;
             params[gadgets.io.RequestParameters.AUTHORIZATION] = gadgets.io.AuthorizationType.NONE;
             gadgets.io.makeRequest(url, IRFlickrShout.sbox.ready, params);
         },
