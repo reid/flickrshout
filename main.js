@@ -75,13 +75,15 @@ var IRFlickrShout = {
             console.log(obj);
             var html = '';
             if (!obj.data) {
-                return IRFlickrShout.error.update('Invalid Flickr ID, why not try another?');
+                IRFlickrShout.error.update('Invalid Flickr ID, why not try another?');
                 html = 'Nothing to show.';
+                return false;
             }
             var items = obj.data.items;
             if (!items) {
-                return IRFlickrShout.error.update('Didn\'t find any photos :(');
+                IRFlickrShout.error.update('Didn\'t find any photos :(');
                 html = 'No photos! Refresh to update.';
+                return false;
             }
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
