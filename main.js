@@ -16,6 +16,11 @@ var IRFlickrShout = {
         },
         ready: function(obj) {
             console.log(obj);
+            var items = obj.data.items;
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                console.log(item.title);
+            }
             document.getElementById('friends-tracks').innerHTML = obj.text;
         }
     },
