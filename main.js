@@ -21,7 +21,7 @@ var IRFlickrShout = {
             var guid = user.getField(opensocial.Person.Field.ID);
             var data = req.get('flickr_user').getData();
             data = data[guid]['flickr_user'];
-            if (typeof data.nsid == "undefined") {
+            if (typeof data.nsid == "undefined" || data.nsid == '') {
                 return IRFlickrShout.userId.toggle();
             }
             var previous = IRFlickrShout.userId.value;
@@ -46,6 +46,7 @@ var IRFlickrShout = {
             return false;
         },
         submit: function() {
+            IRFlickrShout.error.clear();
             var user_id = document.getElementById('user_id').value;
             var req = opensocial.newDataRequest();
             req.add(req.newUpdatePersonAppDataRequest(opensocial.IdSpec.PersonId.VIEWER, 'flickr_user', {nsid: user_id}));
@@ -57,6 +58,7 @@ var IRFlickrShout = {
         photos: [],
         uploaded: 0,
         start: function() {
+            IRFlickrShout.error.clear();
             if (IRFlickrShout.userId.value) {
                 var id = IRFlickrShout.userId.value;
             } else {

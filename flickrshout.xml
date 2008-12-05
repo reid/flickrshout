@@ -17,11 +17,6 @@
 
 <div id="bd">
 
-<div id="error-bd" class="error">
-FlickrShout isn't quite ready to use yet.
-<div>If you continue to see this message, try logging in.</div>
-</div>
-
 <div id="flickr-info">
 <div id="view-id"><span id="view-id-data">Loading your Flickr information...</span> <a href="" onclick="return IRFlickrShout.userId.toggle();">Edit</a></div>
 <form id="entry-form" onsubmit="return IRFlickrShout.userId.submit();" style="display: none;">
@@ -29,6 +24,11 @@ FlickrShout isn't quite ready to use yet.
 <input type="text" name="user_id" id="user_id">
 <input type="submit" value="Save">
 </form>
+</div>
+
+<div id="error-bd" class="error">
+FlickrShout isn't quite ready to use yet.
+<div>If you continue to see this message, try logging in.</div>
 </div>
 
 <div class="block">
