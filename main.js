@@ -21,7 +21,7 @@ var IRFlickrShout = {
             var data = req.get('flickr_user').getData();
 console.log(user);
 console.log(data);
-            data = data[guid];
+            data = data[guid]['flickr_user'];
 console.log(data);
             if (typeof data.nsid == "undefined") {
                 return IRFlickrShout.userId.toggle();
