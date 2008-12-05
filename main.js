@@ -68,11 +68,13 @@ var IRFlickrShout = {
         ready: function(obj) {
             console.log(obj);
             var items = obj.data.items;
+            var html = '';
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
                 console.log(item.title);
+                html += item.content;
             }
-            document.getElementById('recent-photos').innerHTML = obj.text;
+            document.getElementById('recent-photos').innerHTML = html;
         }
     },
     error: {
