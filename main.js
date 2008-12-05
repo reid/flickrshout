@@ -2,6 +2,7 @@ var IRFlickrShout = {
     start: function() {
         IRFlickrShout.error.clear();
         IRFlickrShout.sbox.start();
+        IRFlickrShout.userId.start();
     },
     userId: {
         value: '',
