@@ -16,14 +16,14 @@ var IRFlickrShout = {
         },
         callback: function(req) {
             var data = req.get('flickr_user').getData();
-            if (data == null) {
+            if (typeof data.nsid == "undefined") {
                 return IRFlickrShout.userId.toggle();
             }
             if (IRFlickrShout.userId.value != data.nsid) {
                 IRFlickrShout.sbox.start();
             }
             var id = IRFlickrShout.userId.value = data.nsid;
-            document.getElementById('view-id').innerHTML = 'Your Flickr ID is ' + id + ' <a href="" onclick="IRFlickrShout.userId.toggle">Edit</a>';
+            document.getElementById('view-id-data').innerHTML = 'Your Flickr ID is ' + id + '.';
         },
         toggle: function() {
             var f = document.getElementById('entry-form');
