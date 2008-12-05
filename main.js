@@ -6,6 +6,7 @@ var IRFlickrShout = {
     },
     userId: {
         value: null,
+        displayName: null,
         start: function() {
             IRFlickrShout.userId.update();
         },
@@ -17,6 +18,7 @@ var IRFlickrShout = {
         },
         callback: function(req) {
             var user = req.get('user').getData();
+            IRFlickrShout.userId.displayName = user.getDisplayName();
             var guid = user.getField(opensocial.Person.Field.ID);
             var data = req.get('flickr_user').getData();
             data = data[guid]['flickr_user'];
@@ -53,6 +55,7 @@ var IRFlickrShout = {
         }
     },
     sbox: {
+        photos: [],
         start: function() {
             if (IRFlickrShout.userId.value) {
                 var id = IRFlickrShout.userId.value;
@@ -71,10 +74,24 @@ var IRFlickrShout = {
             var html = '';
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
+                var obj = {};
+                obj[opensocial.Activity.Field.TITLE] = IRFlickrShout.userId.displayName + ' posted <a href="' + item.link + '">' + item.title + '</a> to Flickr.';
                 console.log(item.title);
+                photos[i] = obj;
+                html += obj[opensocial.Activity.Field.TITLE] + '<br>';
                 html += item.content;
             }
             document.getElementById('recent-photos').innerHTML = html;
+        },
+        submit: function() {
+            var p = IRFlickrShout.sbox.photos;
+            for (var i = 0; i < p.length; i++) {
+                var a = opensocial.newActivity(p[i]);
+                opensocial.requestCreateActivity(a, opensocial.CreateActivityPriority.HIGH, IRFlickrShout.sbox.callback);
+            }
+        },
+        callback: function(req) {
+            console.log(req);
         }
     },
     error: {
