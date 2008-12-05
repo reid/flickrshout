@@ -1,0 +1,74 @@
+#ir-app {
+    font-family: Helvetica, sans-serif;
+}
+
+#hd {
+    text-align: center;
+    color: #fff;
+    background-color: #39c;
+    border-bottom: 1px solid #36c;
+    font-style: italic;
+}
+
+h1, h2, h3, .time-input p {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+h1 {
+    font-size: 36px;
+}
+
+.error, .time-input, .block {
+    margin: 10px;
+    padding: 10px;
+}
+
+.error {
+    text-align: center;
+    background-color: #fcc;
+}
+
+.error div {
+    font-size: 70%;
+    color: #222;
+}
+
+.time-input {
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
+    background-color: #222;
+    border: 3px solid #000;
+}
+
+form {
+    margin: 0;
+}
+
+.time-input p {
+    margin-bottom: 10px;
+}
+
+.time-input * {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.time-input input {
+    font-size: 36px;
+    width: 55px;
+}
+
+.button {
+    font-size: 18px !important;
+    width: 150px !important;
+}
+
+#ft {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 70%;
+    color: #bbb;
+}
+    
