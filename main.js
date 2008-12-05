@@ -23,12 +23,13 @@ var IRFlickrShout = {
             if (typeof data.nsid == "undefined") {
                 return IRFlickrShout.userId.toggle();
             }
-            if (IRFlickrShout.userId.value != data.nsid) {
+            var previous = IRFlickrShout.userId.value;
+            var id = IRFlickrShout.userId.value = data.nsid;
+            document.getElementById('view-id-data').innerHTML = 'Your Flickr ID is ' + id + '.';
+            if (previous != id) {
                 IRFlickrShout.sbox.start();
                 IRFlickrShout.userId.toggle();
             }
-            var id = IRFlickrShout.userId.value = data.nsid;
-            document.getElementById('view-id-data').innerHTML = 'Your Flickr ID is ' + id + '.';
         },
         toggle: function() {
             var f = document.getElementById('entry-form');
