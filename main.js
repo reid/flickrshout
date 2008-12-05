@@ -77,7 +77,7 @@ var IRFlickrShout = {
                 var obj = {};
                 obj[opensocial.Activity.Field.TITLE] = IRFlickrShout.userId.displayName + ' posted <a href="' + item.link + '">' + item.title + '</a> to Flickr.';
                 console.log(item.title);
-                photos[i] = obj;
+                IRFlickrShout.sbox.photos.push(obj);
                 html += obj[opensocial.Activity.Field.TITLE] + '<br>';
                 html += item.content;
             }
