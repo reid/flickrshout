@@ -5,7 +5,7 @@ var IRFlickrShout = {
         IRFlickrShout.userId.start();
     },
     userId: {
-        value: '',
+        value: null,
         start: function() {
             IRFlickrShout.userId.update();
         },
@@ -16,12 +16,14 @@ var IRFlickrShout = {
         },
         callback: function(req) {
             var data = req.get('flickr_user').getData();
+            if (data == null) {
+                return IRFlickrShout.userId.toggle();
+            }
             if (IRFlickrShout.userId.value != data.nsid) {
                 IRFlickrShout.sbox.start();
             }
             var id = IRFlickrShout.userId.value = data.nsid;
             document.getElementById('view-id').innerHTML = 'Your Flickr ID is ' + id + ' <a href="" onclick="IRFlickrShout.userId.toggle">Edit</a>';
-            IRFlickrShout.userId.toggle();
         },
         toggle: function() {
             var f = document.getElementById('entry-form');
