@@ -16,6 +16,12 @@ var IRFlickrShout = {
             req.send(IRFlickrShout.userId.callback);
         },
         callback: function(req) {
+            if (req.hadError()) {
+                // User is probably logged out!
+                document.getElementById('flickr-info').innerHTML = 'You are logged out.';
+                document.getElementById('recent-photos').innerHTML = 'Nothing to show.';
+                return IRFlickrShout.error.update('Log in to share your Flickr photos with your friends!');
+            }
             var user = req.get('user').getData();
             IRFlickrShout.userId.displayName = user.getDisplayName();
             var guid = user.getField(opensocial.Person.Field.ID);
