@@ -89,7 +89,7 @@ var IRFlickrShout = {
                 var item = items[i];
                 var obj = {};
                 obj[opensocial.Activity.Field.TITLE] = IRFlickrShout.userId.displayName + ' posted <a href="' + item.link + '">' + item.title + '</a> to Flickr.';
-                obj[opensocial.Activity.Field.BODY] = item.content;
+                obj[opensocial.Activity.Field.BODY] = item.link;
                 obj[opensocial.Activity.Field.URL] = item.link;
                 IRFlickrShout.shout.photos.push(obj);
                 html += '<div class="update">';
