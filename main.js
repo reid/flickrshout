@@ -20,6 +20,7 @@ var IRFlickrShout = {
                 // User is probably logged out!
                 document.getElementById('flickr-info').innerHTML = 'You are logged out.';
                 document.getElementById('recent-photos').innerHTML = 'Nothing to show.';
+                document.getElementById('shout-button').disabled = true;
                 return IRFlickrShout.error.update('Log in to share your Flickr photos with your friends!');
             }
             var user = req.get('user').getData();
