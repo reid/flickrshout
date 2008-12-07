@@ -38,7 +38,7 @@ var IRFlickrShout = {
                 IRFlickrShout.shout.start();
             }
             document.getElementById('user_id').value = id;
-            if (id != '') {
+            if (id == '' || !id) {
                 id = 'not set';
             }
             document.getElementById('view-id-data').innerHTML = 'Your Flickr ID is ' + id + '.';
