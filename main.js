@@ -34,12 +34,15 @@ var IRFlickrShout = {
             }
             var previous = IRFlickrShout.userId.value;
             var id = IRFlickrShout.userId.value = data.nsid;
-            document.getElementById('view-id-data').innerHTML = 'Your Flickr ID is ' + id + '.';
-            document.getElementById('user_id').value = id;
-            if (previous != id && id != '') {
+            if (previous != id) {
                 IRFlickrShout.shout.start();
-                IRFlickrShout.userId.toggle(true);
             }
+            document.getElementById('user_id').value = id;
+            if (id != '') {
+                id = 'not set';
+            }
+            document.getElementById('view-id-data').innerHTML = 'Your Flickr ID is ' + id + '.';
+            IRFlickrShout.userId.toggle(true);
         },
         toggle: function(a) {
             var f = document.getElementById('entry-form');
