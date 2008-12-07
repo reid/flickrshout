@@ -35,7 +35,7 @@ var IRFlickrShout = {
             var previous = IRFlickrShout.userId.value;
             var id = IRFlickrShout.userId.value = data.nsid;
             document.getElementById('view-id-data').innerHTML = 'Your Flickr ID is ' + id + '.';
-            document.getElementById('user_id').innerHTML = id;
+            document.getElementById('user_id').value = id;
             if (previous != id && id != '') {
                 IRFlickrShout.shout.start();
                 IRFlickrShout.userId.toggle(true);
@@ -79,7 +79,6 @@ var IRFlickrShout = {
             gadgets.io.makeRequest(url, IRFlickrShout.shout.ready, params);
         },
         ready: function(obj) {
-            console.log(obj);
             var html = '';
             if (!obj.data) {
                 IRFlickrShout.error.update('Invalid Flickr ID, why not try another?');
@@ -116,7 +115,6 @@ var IRFlickrShout = {
             return false;
         },
         callback: function(req) {
-            console.log(req);
             IRFlickrShout.shout.uploaded++;
             document.getElementById('shout-status').innerHTML = IRFlickrShout.shout.uploaded + '/' + IRFlickrShout.shout.photos.length + ' posted!';
         }
