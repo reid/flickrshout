@@ -28,7 +28,7 @@
 
 <div id="error-bd" class="error">
 FlickrShout isn't quite ready to use yet.
-<div>If you continue to see this message, try logging in.</div>
+<div>If you continue to see this message, make sure you're using it inside an OpenSocial container.</div>
 </div>
 
 <div class="block">

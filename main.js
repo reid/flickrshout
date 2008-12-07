@@ -86,25 +86,25 @@ var IRFlickrShout = {
             if (!obj.data) {
                 IRFlickrShout.error.update('Invalid Flickr ID, why not try another?');
                 html = 'Nothing to show.';
-                return false;
-            }
-            var items = obj.data.items;
-            if (!items) {
-                IRFlickrShout.error.update('Didn\'t find any photos :(');
-                html = 'No photos! Refresh to update.';
-                return false;
-            }
-            for (var i = 0; i < items.length; i++) {
-                var item = items[i];
-                var obj = {};
-                obj[opensocial.Activity.Field.TITLE] = IRFlickrShout.userId.displayName + ' posted <a href="' + item.link + '">' + item.title + '</a> to Flickr.';
-                obj[opensocial.Activity.Field.BODY] = item.link;
-                obj[opensocial.Activity.Field.URL] = item.link;
-                IRFlickrShout.shout.photos.push(obj);
-                html += '<div class="update">';
-                html += obj[opensocial.Activity.Field.TITLE] + '<br>';
-                html += item.content;
-                html += '</div>';
+            } else {
+                var items = obj.data.items;
+                if (!items) {
+                    IRFlickrShout.error.update('Didn\'t find any photos :(');
+                    html = 'No photos! Refresh to update.';
+                } else {
+                    for (var i = 0; i < items.length; i++) {
+                        var item = items[i];
+                        var obj = {};
+                        obj[opensocial.Activity.Field.TITLE] = IRFlickrShout.userId.displayName + ' posted <a href="' + item.link + '">' + item.title + '</a> to Flickr.';
+                        obj[opensocial.Activity.Field.BODY] = item.link;
+                        obj[opensocial.Activity.Field.URL] = item.link;
+                        IRFlickrShout.shout.photos.push(obj);
+                        html += '<div class="update">';
+                        html += obj[opensocial.Activity.Field.TITLE] + '<br>';
+                        html += item.content;
+                        html += '</div>';
+                    }
+                }
             }
             document.getElementById('recent-photos').innerHTML = html;
         },
