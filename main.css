@@ -7,7 +7,7 @@
 #hd {
     padding: 5px;
     color: #fff;
-    background-color: #39c;
+    background-color: #39f;
     border-bottom: 1px solid #36c;
     font-style: italic;
 }
@@ -46,7 +46,7 @@ h1 {
 }
 
 #flickr-info {
-    background: #dff;
+    background: #fef;
     padding: 5px;
 }
 
@@ -73,6 +73,13 @@ h1 {
     float: left;
     padding: 5px;
     margin: 5px;
+}
+
+.update div {
+    padding-bottom: 2px;
+    margin-bottom: 2px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
 }
 
 form {

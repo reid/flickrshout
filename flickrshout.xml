@@ -32,7 +32,7 @@ FlickrShout isn't quite ready to use yet.
 </div>
 
 <div class="block">
-<div class="right"><a href="" onclick="IRFlickrShout.shout.ready(); return false;">Refresh Photos</a></div>
+<div class="right"><a href="" onclick="IRFlickrShout.shout.start(); return false;">Refresh Photos</a></div>
 <h2>Your Recent Photos</h2>
 <div id="recent-photos">Loading...</div>
 <form id="shout" onsubmit="return IRFlickrShout.shout.submit();">
@@ -46,7 +46,7 @@ FlickrShout isn't quite ready to use yet.
 </div>
 
 <div id="ft">
-<a href="http://github.com/reid/flickrshout">Grab This on GitHub</a> &mdash; &copy; 2008 
+<a href="http://github.com/reid/flickrshout">Source on GitHub</a> &mdash; &copy; 2008
 </div>
 
 </div>
