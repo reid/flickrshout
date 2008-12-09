@@ -23,17 +23,17 @@ var IRFlickrShout = {
                 document.getElementById('shout-button').disabled = true;
                 return IRFlickrShout.error.update('Log in to share your Flickr photos with your friends!');
             }
-            var user = req.get('user').getData();
+            var user = req.get('user').getData(),
+                data = req.get('flickr_user').getData(),
+                guid = user.getField(opensocial.Person.Field.ID);
             IRFlickrShout.userId.displayName = user.getDisplayName();
-            var guid = user.getField(opensocial.Person.Field.ID);
-            var data = req.get('flickr_user').getData();
             data = data[guid]['flickr_user'];
             if (typeof data.nsid == "undefined" || data.nsid == '') {
                 IRFlickrShout.error.update('To get started, give us a Flickr ID!');
                 return IRFlickrShout.userId.toggle();
             }
-            var previous = IRFlickrShout.userId.value;
-            var id = IRFlickrShout.userId.value = data.nsid;
+            var previous = IRFlickrShout.userId.value,
+                id = IRFlickrShout.userId.value = data.nsid;
             if (previous != id) {
                 IRFlickrShout.shout.start();
             }
@@ -45,8 +45,8 @@ var IRFlickrShout = {
             IRFlickrShout.userId.toggle(true);
         },
         toggle: function(a) {
-            var f = document.getElementById('entry-form');
-            var v = document.getElementById('view-id');
+            var f = document.getElementById('entry-form'),
+                v = document.getElementById('view-id');
             if (f.style.display == 'none' && !a) {
                 f.style.display = 'block';
                 v.style.display = 'none';
@@ -57,9 +57,9 @@ var IRFlickrShout = {
             return false;
         },
         submit: function() {
+            var user_id = document.getElementById('user_id').value,
+                req = opensocial.newDataRequest();
             IRFlickrShout.error.clear();
-            var user_id = document.getElementById('user_id').value;
-            var req = opensocial.newDataRequest();
             req.add(req.newUpdatePersonAppDataRequest(opensocial.IdSpec.PersonId.VIEWER, 'flickr_user', {nsid: user_id}));
             req.send(IRFlickrShout.userId.update); 
             return false;
@@ -69,14 +69,15 @@ var IRFlickrShout = {
         photos: [],
         uploaded: 0,
         start: function() {
+            var id;
             IRFlickrShout.error.clear();
             if (IRFlickrShout.userId.value) {
-                var id = IRFlickrShout.userId.value;
+                id = IRFlickrShout.userId.value;
             } else {
                 IRFlickrShout.error.update('Please specify your Flickr ID :)');
             }
-            var url = "http://api.flickr.com/services/feeds/photos_public.gne?id=" + id + "&lang=en-us";
-            var params = {};
+            var url = "http://api.flickr.com/services/feeds/photos_public.gne?id=" + id + "&lang=en-us",
+                params = {};
             params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.FEED;
             params[gadgets.io.RequestParameters.AUTHORIZATION] = gadgets.io.AuthorizationType.NONE;
             gadgets.io.makeRequest(url, IRFlickrShout.shout.ready, params);
@@ -93,13 +94,20 @@ var IRFlickrShout = {
                     html = 'No photos! Refresh to update.';
                 } else {
                     for (var i = 0; i < items.length; i++) {
-                        var item = items[i];
-                        var obj = {};
+                        var item = items[i],
+                        obj = {},
+                        checkbox = 'photo_' + i;
                         obj[opensocial.Activity.Field.TITLE] = IRFlickrShout.userId.displayName + ' posted <a href="' + item.link + '">' + item.title + '</a> to Flickr.';
                         obj[opensocial.Activity.Field.BODY] = item.link;
                         obj[opensocial.Activity.Field.URL] = item.link;
                         IRFlickrShout.shout.photos.push(obj);
+                        if (IRFlickrShout.shout.photos.length % 2 == 0) {
+                            html += '<div class="clear-both"></div>';
+                        }
                         html += '<div class="update">';
+                        html += '<label for="' + checkbox + '" title="Selected photos will be posted as activity">';
+                        html += 'Post this photo? <input type="checkbox" name="' + checkbox + '" id="' + checkbox + '" checked="checked">';
+                        html += '</label><br>';
                         html += obj[opensocial.Activity.Field.TITLE] + '<br>';
                         html += item.content;
                         html += '</div>';
@@ -107,12 +115,23 @@ var IRFlickrShout = {
                 }
             }
             document.getElementById('recent-photos').innerHTML = html;
+            return false;
         },
         submit: function() {
             IRFlickrShout.shout.uploaded = 0;
-            var p = IRFlickrShout.shout.photos;
-            for (var i = 0; i < p.length; i++) {
-                var a = opensocial.newActivity(p[i]);
+            var p = IRFlickrShout.shout.photos,
+                l = p.length,
+                n = [],
+                i = 0,
+                a;
+            for (; i < l; i++) {
+                if (document.getElementById('photo_' + i).checked) {
+                    n.push(p[i]);
+                }
+            }
+            p = n;
+            for (var i = 0; i < l; i++) {
+                a = opensocial.newActivity(p[i]);
                 opensocial.requestCreateActivity(a, opensocial.CreateActivityPriority.HIGH, IRFlickrShout.shout.callback);
             }
             return false;
